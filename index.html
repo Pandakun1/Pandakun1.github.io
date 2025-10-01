@@ -1,0 +1,559 @@
+                <!-- QWERTZ Row -->
+                <!-- <div class="row">
+                    <div class="key w1-5" data-desc="Tabulator - Springt zur n<!DOCTYPE html> -->
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Tastatur QWERTZ</title>
+    <style>
+        * {
+            margin: 1;
+            padding: 1;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+
+        .keyboard-container {
+            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            position: fixed;
+            max-width: 1398px;
+        }
+
+        .keyboard-header {
+            background: linear-gradient(90deg, #1a1a1a, #2a2a2a);
+            height: 50px;
+            border-radius: 10px 10px 0 0;
+            margin: -30px -30px 20px -30px;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .indicator {
+            display: flex;
+            gap: 10px;
+        }
+
+        .indicator span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #333;
+        }
+
+        .indicator span.active {
+            background: #00ff88;
+            box-shadow: 0 0 10px #00ff88;
+        }
+
+        @keyframes rgbFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .keyboard {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr auto;
+            gap: 10;
+            background: #665e5e;
+            border-radius: 8px;
+            padding: 3px;
+        }
+
+        .main-section {
+            grid-column: 1;
+            display: absolute;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .function-section {
+            grid-column: 3;
+            display: absolute;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .numpad-section {
+            grid-column: 4;
+            display: flex;
+            flex-direction: column;
+            gap: 0px;
+            margin-top: 51;
+            margin-left: 15;
+            margin-right: 15;
+            position: relative;
+        }
+
+        .spacer {
+            grid-column: 2;
+            width: 0px;
+        }
+
+        .row {
+            display: flex;
+            gap: 5px;
+        }
+
+        .key {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+            border: 0.5px solid #1a1a1a;
+            border-radius: 2px;
+            color: #aaa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03),
+                        0 0 0 2px transparent;
+            animation: keyRgbGlow 3s ease-in-out infinite;
+        }
+
+        .key::after {
+            content: attr(data-desc);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            white-space: pre-wrap;
+            max-width: 300px;
+            min-width: 150px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8),
+                        0 0 20px rgba(0, 255, 136, 0.2);
+            z-index: 1000;
+            animation: none;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .key:hover::after {
+            animation: showTooltip 0.3s ease 0.2s forwards;
+        }
+
+        @keyframes showTooltip {
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        @keyframes keyRgbGlow {
+            0% { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 0 8px rgba(255, 0, 0, 0.4); }
+            14% { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 0 8px rgba(255, 127, 0, 0.4); }
+            28% { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 0 8px rgba(255, 255, 0, 0.4); }
+            42% { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 0 8px rgba(0, 255, 0, 0.4); }
+            57% { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 0 8px rgba(0, 255, 255, 0.4); }
+            71% { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 0 8px rgba(0, 0, 255, 0.4); }
+            85% { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 0 8px rgba(255, 0, 255, 0.4); }
+            100% { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 0 8px rgba(255, 0, 0, 0.4); }
+        }
+
+        .key:nth-child(2) { animation-delay: 0.1s; }
+        .key:nth-child(3) { animation-delay: 0.2s; }
+        .key:nth-child(4) { animation-delay: 0.3s; }
+        .key:nth-child(5) { animation-delay: 0.4s; }
+        .key:nth-child(6) { animation-delay: 0.5s; }
+        .key:nth-child(7) { animation-delay: 0.6s; }
+        .key:nth-child(8) { animation-delay: 0.7s; }
+        .key:nth-child(9) { animation-delay: 0.8s; }
+        .key:nth-child(10) { animation-delay: 0.9s; }
+        .key:nth-child(11) { animation-delay: 1.0s; }
+
+
+        .key::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 2px;
+            background: linear-gradient(135deg, 
+                rgba(255, 0, 0, 0.3) 0%,
+                rgba(255, 127, 0, 0.3) 14%,
+                rgba(255, 255, 0, 0.3) 28%,
+                rgba(0, 255, 0, 0.3) 42%,
+                rgba(0, 255, 255, 0.3) 57%,
+                rgba(0, 0, 255, 0.3) 71%,
+                rgba(255, 0, 255, 0.3) 85%,
+                rgba(255, 0, 0, 0.3) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .key:hover {
+            transform: translateY(-1px);
+            border-color: #333;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            z-index: 10;
+        }
+
+        .key:hover::before {
+            opacity: 1;
+            animation: rgbPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes rgbPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        .key:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .key .sub {
+            font-size: 8px;
+            color: #696969;
+            margin-top: 2px;
+        }
+
+        .key.w1-25 { width: 65px; }
+        .key.w1-5 { width: 78px; }
+        .key.w1-75 { width: 91px; }
+        .key.w2 { width: 104px; }
+        .key.w2-0 { width: 112;}
+        .key.w2-25 { width: 117px; }
+        .key.w2-50 { width: 108px}
+        .key.w2-75 { width: 152px; }
+        .key.w6-25 { width: 375px; }
+        .key.ctrl-left { width: 60px; }
+
+        .key.h2 { 
+            height: 110px;
+        }
+
+        .key.iso-enter-unified {
+            width: 78px; /* Beibehaltung der Breite (w1-5) */
+            height: 109px; /* Beibehaltung der Höhe */
+            
+            /* NEUER clip-path: Die Aussparung befindet sich jetzt UNTEN RECHTS */
+            clip-path: polygon(
+                0 0, 100% 0, 100% 100%, 
+                13px 100%, /* Von links: 52px (Tastenbreite) */
+                13px 52px, /* Nach oben: 52px (Tastenhöhe) */
+                0 52px /* Nach links zurück: 0 */
+            );
+            border-radius: 2px;
+            /* Text-Positionierung an die neue Form anpassen */
+            justify-content: flex-start; /* Text oben links */
+            padding: 10px;
+            font-size: 17px;
+            line-height: 1;
+            text-transform: uppercase;
+            position: relative;
+            /* RGB-Animation aktivieren */
+            animation: keyRgbGlow 3s ease-in-out infinite;
+            animation-delay: 0.7s; /* Verzögerung für Welleneffekt */
+        }
+
+        .key.iso-enter-unified::before {
+            clip-path: polygon(
+                0 0, 100% 0, 100% 100%, 
+                13px 100%,
+                13px 52px,
+                0 52px
+            );
+            /* Stelle sicher, dass der RGB-Gradient auch hier gilt */
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 2px;
+            background: linear-gradient(135deg, 
+                rgba(255, 0, 0, 0.3) 0%,
+                rgba(255, 127, 0, 0.3) 14%,
+                rgba(255, 255, 0, 0.3) 28%,
+                rgba(0, 255, 0, 0.3) 42%,
+                rgba(0, 255, 255, 0.3) 57%,
+                rgba(0, 0, 255, 0.3) 71%,
+                rgba(255, 0, 255, 0.3) 85%,
+                rgba(255, 0, 0, 0.3) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .key.iso-enter-unified:hover::before {
+            opacity: 1;
+            animation: rgbPulse 1.5s ease-in-out infinite;
+        }
+
+        .key.function {
+            background: linear-gradient(145deg, #252525, #151515);
+            font-size: 10px;
+        }
+
+        .key.special {
+            background: linear-gradient(145deg, #252525, #151515);
+        }
+
+        .key.iso{
+            background: linear-gradient(145deg, #252525, #151515);
+        }
+
+        @media (max-width: 1400px) {
+            .key {
+                width: 45px;
+                height: 45px;
+                font-size: 10px;
+            }
+            .key.w1-25 { width: 59px; }
+            .key.w1-5 { width: 69px; }
+            .key.w1-75 { width: 78px; }
+            .key.w2 { width: 93px; }
+            .key.w2-25 { width: 101px; }
+            .key.w2-75 { width: 123px; }
+            .key.w6-25 { width: 281px; }
+            .key.h2 { height: 90px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="keyboard-container">
+        <div class="keyboard-header">
+            <div class="logo">EmpireV Roleplay Tastaturbelegung</div>
+            <div class="indicator">
+                <span class="active"></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="keyboard">
+            <!-- Main Section -->
+            <div class="main-section">
+                <!-- Function Row -->
+                <div class="row">
+                    <div class="key function" data-desc="Menü schließen&#10;&#10;Schließt Dialoge und Menüs&#10;Bricht aktuelle Aktion ab">ESC</div>
+                    <div style="width: 30px;"></div>
+                    <div class="key function" data-desc="Telefon öffnen&#10;&#10;Öffnet dein Smartphone">F1</div>
+                    <div class="key function" data-desc="Inventar öffnen&#10;&#10;Zeigt dein komplettes Inventar">F2</div>
+                    <div class="key function" data-desc="Polizei Menü öffnen&#10;&#10;Polizei-spezifische Funktionen">F3</div>
+                    <div class="key function" data-desc="Emote Menü öffnen&#10;&#10;Animationen und Gesten">F4</div>
+                    <div style="width: 30px;"></div>
+                    <div class="key function" data-desc="Ambulanz Menü / Notrufliste&#10;&#10;Mediziner-Funktionen&#10;Notruf-Übersicht">F5</div>
+                    <div class="key function" data-desc="Job Menü öffnen&#10;&#10;Job-spezifische Aktionen">F6</div>
+                    <div class="key function" data-desc="Rechnungen&#10;&#10;Offene Rechnungen anzeigen">F7</div>
+                    <div class="key function" data-desc="F8 - Keine Belegung">F8</div>
+                    <div style="width: 30px;"></div>
+                    <div class="key function" data-desc="F9 - Keine Belegung">F9</div>
+                    <div class="key function" data-desc="F10 - Keine Belegung">F10</div>
+                    <div class="key function" data-desc="F11 - Vollbild">F11</div>
+                    <div class="key function" data-desc="F12 - Screenshot">F12</div>
+                </div>
+
+                <!-- Number Row -->
+                <div class="row">
+                    <div class="key" data-desc="Sprachreichweite ändern&#10;&#10;Wechselt zwischen Flüstern / Normal / Rufen">^<span class="sub">°</span></div>
+                    <div class="key" data-desc="Schnellzugriff Slot 1&#10;Sirene 1&#10;&#10;Item aus Hotbar / Polizeifahrzeug">1<span class="sub">!</span></div>
+                    <div class="key" data-desc="Schnellzugriff Slot 2&#10;Sirene 2">2<span class="sub">"</span></div>
+                    <div class="key" data-desc="Schnellzugriff Slot 3&#10;Sirene 3">3<span class="sub">§</span></div>
+                    <div class="key" data-desc="Schnellzugriff Slot 4&#10;Sirene 4">4<span class="sub">$</span></div>
+                    <div class="key" data-desc="Schnellzugriff Slot 5&#10;Sirene 5">5<span class="sub">%</span></div>
+                    <div class="key" data-desc="Sirene 6&#10;&#10;Nur in Einsatzfahrzeugen">6<span class="sub">&</span></div>
+                    <div class="key" data-desc="Sirene 7&#10;&#10;Nur in Einsatzfahrzeugen">7<span class="sub">/</span></div>
+                    <div class="key" data-desc="Sirene 8&#10;&#10;Nur in Einsatzfahrzeugen">8<span class="sub">(</span></div>
+                    <div class="key" data-desc="Sirene 9&#10;&#10;Nur in Einsatzfahrzeugen">9<span class="sub">)</span></div>
+                    <div class="key" data-desc="Ziffer 0&#10;&#10;Keine Belegung">0<span class="sub">=</span></div>
+                    <div class="key" data-desc="Eszett / Fragezeichen&#10;&#10;Keine Belegung">ß<span class="sub">?</span></div>
+                    <div class="key" data-desc="Akzent-Tasten&#10;&#10;Keine Belegung">´<span class="sub">`</span></div>
+                    <div class="key w2" data-desc="Menü schließen&#10;&#10;Alternative zum ESC">BACK</div>
+                </div>
+
+                <!-- QWERTZ Row -->
+                <div class="row">
+                    <div class="key w1-5" data-desc="Hotbar anzeigen&#10;&#10;Zeigt Items-Schnellzugriff&#10;Slots 1-5">TAB</div>
+                    <div class="key" data-desc="Q - Nach links lehnen&#10;&#10;Keine Belegung">Q</div>
+                    <div class="key" data-desc="W - Vorwärts&#10;&#10;Keine Belegung">W</div>
+                    <div class="key" data-desc="Interagieren&#10;&#10;Mit Objekten / Personen / Fahrzeugen&#10;Türen öffnen, Items aufheben">E</div>
+                    <div class="key" data-desc="Waffe nachladen&#10;&#10;Munition nachladen">R</div>
+                    <div class="key" data-desc="Radialmenü öffnen&#10;&#10;Schnellzugriff auf Aktionen">T</div>
+                    <div class="key" data-desc="Hände hoch&#10;&#10;Übergabe-Animation">Z</div>
+                    <div class="key" data-desc="Tempomat&#10;&#10;Geschwindigkeit fixieren&#10;Nur im Fahrzeug">U</div>
+                    <div class="key" data-desc="I - Standard&#10;&#10;Keine Belegung">I</div>
+                    <div class="key" data-desc="Sirenen Menü öffnen&#10;&#10;Sirenen-Steuerung&#10;Nur in Einsatzfahrzeugen">O</div>
+                    <div class="key" data-desc="Pausemenü&#10;&#10;Spielmenü öffnen">P</div>
+                    <div class="key" data-desc="Umlaut Ü&#10;&#10;Keine Belegung">Ü</div>
+                    <div class="key" data-desc="Plus / Stern&#10;&#10;Keine Belegung">+<span class="sub">*</span></div>
+                    <div class="key w1-5" style="visibility: hidden;">ENTER-SPACE</div>
+                </div>
+
+                <!-- ASDFG Row -->
+                <div class="row">
+                    <div class="key w1-75" data-desc="CAPS LOCK&#10;&#10;Keine Belegung">CAPS</div>
+                    <div class="key" data-desc="A - Links&#10;&#10;Keine Belegung">A</div>
+                    <div class="key" data-desc="S - Rückwärts&#10;&#10;Keine Belegung">S</div>
+                    <div class="key" data-desc="D - Rechts&#10;&#10;Keine Belegung">D</div>
+                    <div class="key" data-desc="Training beenden&#10;&#10;Gym-Training abbrechen">F</div>
+                    <div class="key" data-desc="Motor umschalten (Fahrzeug)&#10;Spieler tackeln (zu Fuß)&#10;Interaktion (Sonstige)&#10;&#10;Mehrfachbelegung">G</div>
+                    <div class="key" data-desc="H - Standard&#10;&#10;Keine Belegung">H</div>
+                    <div class="key" data-desc="J - Standard&#10;&#10;Keine Belegung">J</div>
+                    <div class="key" data-desc="K - Standard&#10;&#10;Keine Belegung">K</div>
+                    <div class="key" data-desc="L - Standard&#10;&#10;Keine Belegung">L</div>
+                    <div class="key" data-desc="Umlaut Ö&#10;&#10;Keine Belegung">Ö</div>
+                    <div class="key" data-desc="Umlaut Ä&#10;&#10;Keine Belegung">Ä</div>
+                    <div class="key" data-desc="Raute / Apostroph&#10;&#10;Keine Belegung">#<span class="sub">'</span></div>
+                    <div class="key w1-5" style="visibility: hidden;">ENTER-SPACE</div>
+                </div>
+
+                <!-- YXCV Row -->
+                <div class="row">
+                    <div class="key w1-25" data-desc="SHIFT - Sprinten&#10;&#10;Keine Belegung">SHIFT</div>
+                    <div class="key" data-desc="Kleiner / Größer&#10;&#10;Keine Belegung"><><span class="sub">|</span></div>
+                    <div class="key" data-desc="Y - Standard&#10;&#10;Keine Belegung">Y</div>
+                    <div class="key" data-desc="Emote abbrechen&#10;&#10;Animation stoppen">X</div>
+                    <div class="key" data-desc="C - Ducken&#10;&#10;Keine Belegung">C</div>
+                    <div class="key" data-desc="V - Perspektive wechseln&#10;&#10;Keine Belegung">V</div>
+                    <div class="key" data-desc="Sicherheitsgurt umschalten (Fahrzeug)&#10;Finger zeigen (zu Fuß)&#10;&#10;Mehrfachbelegung">B</div>
+                    <div class="key" data-desc="Primärer Funkkanal senden&#10;&#10;Sprechen im Funkkanal&#10;Taste gedrückt halten">N</div>
+                    <div class="key" data-desc="M - Karte&#10;&#10;Keine Belegung">M</div>
+                    <div class="key" data-desc="Haus Menü&#10;&#10;Immobilien-Verwaltung">,<span class="sub">;</span></div>
+                    <div class="key" data-desc="Tank UI&#10;&#10;Tankstellen-Interface">.<span class="sub">:</span></div>
+                    <div class="key" data-desc="Megaphon benutzen&#10;&#10;Lautsprecher-Ansage&#10;Polizei/Einsatzfahrzeuge">-<span class="sub">_</span></div>
+                    <div class="key w2-75" data-desc="SHIFT - Sprinten&#10;&#10;Keine Belegung">SHIFT</div>
+                </div>
+
+                <!-- Bottom Row -->
+                <div class="row">
+                    <div class="key ctrl-left" data-desc="Motor laufen lassen (halten)&#10;Ducken (zu Fuß)&#10;Sprachreichweite je 1m ändern&#10;&#10;Mehrfachbelegung">STRG</div>
+                    <div class="key w1-25" data-desc="Windows-Taste&#10;&#10;Keine Belegung">⊞</div>
+                    <div class="key w1-25" data-desc="ALT-Taste&#10;&#10;Keine Belegung">ALT</div>
+                    <div class="key w6-25" data-desc="LEERTASTE - Springen / Handbremse&#10;&#10;Keine Belegung">SPACE</div>
+                    <div class="key w1-25" data-desc="ALT GR - Sonderzeichen&#10;&#10;Keine Belegung">ALT GR</div>
+                    <div class="key w1-25" data-desc="Windows-Taste&#10;&#10;Keine Belegung">⊞</div>
+                    <div class="key w1-25" data-desc="Kontext-Menü&#10;&#10;Keine Belegung">☰</div>
+                    <div class="key w1-25" data-desc="Steuerung&#10;&#10;Keine Belegung">STRG</div>
+                </div>
+                </div>
+
+                <div class="spacer"></div>
+
+                <!-- Function Section (Middle) -->
+                <div class="function-section">
+                    <!-- Top Function Row -->
+                    <div class="row">
+                        <div class="key function" data-desc="DRUCK - Screenshot&#10;&#10;Keine Belegung">DRUCK</div>
+                        <div class="key function" data-desc="ROLLEN - Scroll Lock&#10;&#10;Keine Belegung">ROLLEN</div>
+                        <div class="key function" data-desc="PAUSE - Pause/Break&#10;&#10;Keine Belegung">PAUSE</div>
+                    </div>
+
+                    <!-- Navigation Block -->
+                    <div class="row">
+                        <div class="key special" data-desc="EINFG - Insert&#10;&#10;Keine Belegung">EINFG</div>
+                        <div class="key special" data-desc="POS1 - Pos1&#10;&#10;Keine Belegung">POS1</div>
+                        <div class="key special" data-desc="Angebot annehmen&#10;&#10;Bestätigung in Dialogen">BILD↑</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="key special" data-desc="ENTF - Entfernen&#10;&#10;Keine Belegung">ENTF</div>
+                        <div class="key special" data-desc="ENDE - Ende&#10;&#10;Keine Belegung">ENDE</div>
+                        <div class="key special" data-desc="Angebot ablehnen&#10;&#10;Ablehnung in Dialogen">BILD↓</div>
+                    </div>
+
+                    <!-- Empty row for alignment -->
+                    <div class="row" style="height: 52px;"></div>
+
+                    <!-- Arrow Keys -->
+                    <div class="row" style="justify-content: flex-start; padding-left: 58px;">
+                        <div class="key special" style="position: relative; right: 0; left: 2;" data-desc="Menü Navigation oben&#10;&#10;Cursor nach oben in Menüs">↑</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="key special" data-desc="Blinker links (Fahrzeug)&#10;Sekundärer Funkkanal senden&#10;Menü: Slider links / Abbrechen&#10;&#10;Mehrfachbelegung">←</div>
+                        <div class="key special" data-desc="Warnblinker (Fahrzeug)&#10;Menü Navigation unten&#10;&#10;Mehrfachbelegung">↓</div>
+                        <div class="key special" data-desc="Blinker rechts (Fahrzeug)&#10;Menü: Slider rechts&#10;&#10;Mehrfachbelegung">→</div>
+                    </div>
+                </div>
+
+                <!-- Numpad Section -->
+                <div class="numpad-section">
+                    <!-- Numpad Top Row -->
+                    <div class="row">
+                        <div class="key function" data-desc="NUM LOCK&#10;&#10;Keine Belegung">NUM</div>
+                        <div class="key" data-desc="Division&#10;&#10;Keine Belegung">/</div>
+                        <div class="key" data-desc="Multiplikation&#10;&#10;Keine Belegung">*</div>
+                        <div class="key" data-desc="Subtraktion&#10;&#10;Keine Belegung">-</div>
+                    </div>
+
+                    <!-- Numpad Row 1 -->
+                    <div class="row">
+                        <div class="key" data-desc="Numpad 7&#10;&#10;Keine Belegung">7</div>
+                        <div class="key" data-desc="Numpad 8&#10;&#10;Keine Belegung">8</div>
+                        <div class="key" data-desc="Numpad 9&#10;&#10;Keine Belegung">9</div>
+                        <div class="key h2 special" style="position: absolute; right: 0; left: 180;" data-desc="Addition&#10;&#10;Keine Belegung">+</div>
+                    </div>
+
+                    <!-- Numpad Row 2 -->
+                    <div class="row" style="position: relative;">
+                        <div class="key" data-desc="Numpad 4&#10;&#10;Keine Belegung">4</div>
+                        <div class="key" data-desc="Numpad 5&#10;&#10;Keine Belegung">5</div>
+                        <div class="key" data-desc="Numpad 6&#10;&#10;Keine Belegung">6</div>
+                    </div>
+
+                    <!-- Numpad Row 3 -->
+                    <div class="row">
+                        <div class="key" data-desc="Numpad 1&#10;&#10;Keine Belegung">1</div>
+                        <div class="key" data-desc="Numpad 2&#10;&#10;Keine Belegung">2</div>
+                        <div class="key" data-desc="Numpad 3&#10;&#10;Keine Belegung">3</div>
+                        <div class="key h2 special" style="position: absolute; right: 0; left: 180;" data-desc="Enter&#10;&#10;Keine Belegung">ENT</div>
+                    </div>
+
+                    <!-- Numpad Bottom Row -->
+                    <div class="row" style="position: relative;">
+                        <div class="key w2-0" data-desc="Numpad 0&#10;&#10;Keine Belegung">0</div>
+                        <div class="key" data-desc="Dezimalkomma&#10;&#10;Keine Belegung">,</div>
+                    </div>
+                </div>
+
+                <!-- Enter Taste -->
+                <div class="key iso-enter-unified special" 
+                style="position: flex; right: 547px; top: 118px;" 
+                data-desc="Menü bestätigen / Eingabe&#10;&#10;Auswahl bestätigen&#10;Zeilenumbruch (Chat)">
+                <span style="font-size: 10px;">ENTER</span>
+                <span style="font-size: 24px; position: absolute; bottom: 8px; right: 10px;">↵</span>
+                </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
